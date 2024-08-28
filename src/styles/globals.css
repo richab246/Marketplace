@@ -1,0 +1,314 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
+*/
+
+.main-l {
+  width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 120px 24px 160px 24px;
+  pointer-events: none;
+  background-color: #050816;
+}
+
+.main {
+  width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 120px 24px 160px 24px;
+  pointer-events: none;
+}
+
+.main:before {
+  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
+  position: absolute;
+  content: "";
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.main:after {
+  content: "";
+  background-image: url("/assets/images/grid.svg");
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  opacity: 0.4;
+  filter: invert(1);
+}
+
+
+
+.gradient {
+  height: fit-content;
+  z-index: 3;
+  width: 100%;
+  max-width: 640px;
+  background-image: radial-gradient(
+      at 27% 37%,
+      hsla(215, 98%, 61%, 1) 0px,
+      transparent 0%
+    ),
+    radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 1) 0px, transparent 50%),
+    radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 1) 0px, transparent 50%),
+    radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 50%),
+    radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 50%),
+    radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 50%),
+    radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%);
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  filter: blur(100px) saturate(150%);
+  top: 80px;
+  opacity: 0.15;
+}
+
+@media screen and (max-width: 640px) {
+  .main {
+    padding: 0;
+  }
+}
+
+/* Tailwind Styles */
+
+.app {
+  @apply relative z-0 flex justify-center items-center flex-col max-w-7xl mx-auto;
+  max-width: 100%;
+}
+
+.black_btn {
+  @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center;
+}
+
+.outline_btn {
+  @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
+}
+
+.link_btn {
+  @apply text-[16px] dark:text-gray-200 text-gray-800 font-inter font-normal hover:underline
+}
+
+.head_text {
+  @apply text-4xl font-extrabold leading-[1.15] dark:text-white text-black sm:text-6xl;
+}
+
+.blue_gradient {
+  @apply mt-4 text-black sm:text-6xl text-4xl font-extrabold;
+}
+
+.dark .blue_gradient {
+  @apply mt-4 dark:bg-gradient-to-r from-[#5ddcff] via-[#3c67e3] to-[#4e00c2] text-black bg-clip-text text-transparent sm:text-6xl text-4xl font-extrabold;
+}
+
+.sidebar {
+  @apply hover:underline dark:text-gray-200 text-black font-semibold text-[15px]
+}
+
+:root {
+  --radial-gradient-background: 2, 7, 28;
+  --solid-color-background: 21, 16, 48;
+  --overlay-color: 255, 255, 255;
+}
+
+
+.radial-gradient {
+  background: radial-gradient(
+          circle at 50% 0%,
+          rgba(var(--radial-gradient-background), 0.3) 0%,
+          transparent 60%
+      )
+      rgba(var(--solid-color-background), 1);
+}
+
+.linear-mask {
+  mask-image: linear-gradient(
+      -75deg,
+      white calc(var(--x) + 20%),
+      transparent calc(var(--x) + 30%),
+      white calc(var(--x) + 100%)
+  );
+  -webkit-mask-image: linear-gradient(
+      -75deg,
+      white calc(var(--x) + 20%),
+      transparent calc(var(--x) + 30%),
+      white calc(var(--x) + 100%)
+  );
+}
+
+.linear-overlay {
+  background-image: linear-gradient(
+      -75deg,
+      rgba(var(--overlay-color), 0.1) calc(var(--x) + 20%),
+      rgba(var(--overlay-color), 0.5) calc(var(--x) + 25%),
+      rgba(var(--overlay-color), 0.1) calc(var(--x) + 100%)
+  );
+  mask:
+      linear-gradient(black, black) content-box,
+      linear-gradient(black, black);
+  -webkit-mask:
+      linear-gradient(black, black) content-box,
+      linear-gradient(black, black);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+}
+
+.green_gradient {
+  @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
+}
+
+
+.desc {
+  @apply mt-5 text-base text-gray-600 sm:text-[17px] sm:max-w-xl max-w-sm sm:mx-0 mx-4;
+}
+
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 50deg;
+  inherits: false;
+}
+
+.search_input {
+  @apply relative block sm:w-full rounded-xl bg-white dark:bg-[#050816] py-2 font-satoshi pl-8 pr-2 font-medium;
+}
+
+.search_input::after,
+.search_input::before {
+  inset: -3.5px; 
+  z-index: -1;
+  border-radius: inherit;
+  position: absolute;
+  content: '';
+  background: linear-gradient(
+    var(--rotate),
+    #DBC192, #89A7E0, #EEA0B7
+  );
+  animation: spin 3s linear infinite;
+}
+
+.search_input::after {
+  filter: blur(8px);
+  transform: scale(1);
+  background-image: linear-gradient(
+    var(--rotate),
+    #DBC192, #89A7E0, #EEA0B7
+  );
+  animation: spin 3s linear infinite;
+}
+
+.dark .search_input::after,
+.dark .search_input::before {
+  background: linear-gradient(
+    var(--rotate),
+    #5ddcff, #3c67e3, #4e00c2
+  );
+}
+
+.dark .search_input::after {
+  background-image: linear-gradient(
+    var(--rotate),
+    #5ddcff, #3c67e3, #4e00c2
+  );
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+.search {
+  @apply bg-transparent font-medium text-base border-none;
+}
+
+.input_btn {
+  @apply rounded-xl bg-[#7b0fff] sm:px-6 px-2 text-white transition-all hover:bg-white hover:text-black text-center sm:text-[16px] text-xs font-inter font-semibold flex items-center justify-center sm:py-3 py-2 gap-2;
+}
+
+.sectionHeadText {
+ @apply text-white font-black md:text-[60px] sm:text-[50px] text-[30px]
+}
+.sectionSubText {
+ @apply sm:text-[18px] text-[14px] text-[#aaa6c3] uppercase tracking-wider
+}
+
+.section_wrapper {
+  @apply sm:px-16 px-6 sm:py-16 py-10
+}
+
+.copy_btn {
+  @apply w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer;
+}
+
+.glassmorphism {
+  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
+}
+
+.prompt_layout {
+  @apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3;
+}
+
+/* Feed Component */
+.feed {
+  @apply mt-16 mx-auto w-1/2 max-w-xl flex justify-center items-center flex-col gap-2 mb-6 sm:w-3/4 md:w-full;
+}
+
+/* Form Component */
+.form_textarea {
+  @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
+}
+
+.form_input {
+  @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0;
+}
+
+/* Nav Component */
+.logo_text {
+  @apply max-sm:hidden font-satoshi font-semibold text-lg text-black tracking-wide;
+}
+
+.dropdown {
+  @apply absolute right-0 top-full mt-2 w-48 rounded-lg bg-white dark:bg-[#151030] dark:border-white/[0.2] flex flex-col gap-2 justify-end border border-gray-300 py-2;
+}
+
+.dropdown_link {
+  @apply text-sm font-inter font-medium px-4 py-2 hover:bg-gray-100 dark:text-white dark:hover:bg-[#2a3754] w-full flex items-center gap-2;
+}
+
+/* PromptCard Component */
+.side_card {
+  @apply hover:bg-[#dde8ff] hover:text-[#4c83ea] dark:hover:bg-[#2a3754] dark:hover:text-[#4c83ea] dark:text-gray-300 px-4 py-3 w-full text-center flex gap-3 items-center 
+}
+
+.flex-center {
+  @apply flex justify-center items-center;
+}
+
+.flex-start {
+  @apply flex justify-start items-start;
+}
+
+.flex-end {
+  @apply flex justify-end items-center;
+}
+
+.flex-between {
+  @apply flex justify-between items-center;
+}
