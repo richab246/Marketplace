@@ -18,7 +18,7 @@ const Nav = ({isAuthenticated, user}) => {
   };
 
   return (
-    <nav className="flex-between w-full pt-3 shadow-md p-3 dark:shadow-slate-900">
+    <nav className="flex-between w-full pt-3 shadow-md p-3 bg-white dark:bg-[#050816] dark:shadow-slate-900 sticky top-0 z-50">
        <div className="flex items-center">{}
         <button
           onClick={toggleSidebar}

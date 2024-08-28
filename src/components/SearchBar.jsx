@@ -7,7 +7,7 @@ const SearchBar = () => {
   const [searchText, isSearchText] = useState('');
 
   const handleSearchChange = (e) => {
-
+      isSearchText(e.target.value)
   }
 
   return (
@@ -21,6 +21,7 @@ const SearchBar = () => {
          onChange={handleSearchChange}
          required
          className='search peer'
+         name='search'
         />
         <button className='input_btn'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="sm:size-6 size-4 stroke-white">

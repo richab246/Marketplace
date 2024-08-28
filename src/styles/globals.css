@@ -41,7 +41,6 @@
 
 .main:after {
   content: "";
-  background-image: url("/assets/images/grid.svg");
   z-index: 1;
   position: absolute;
   width: 100%;
@@ -108,7 +107,7 @@
 }
 
 .blue_gradient {
-  @apply mt-4 text-black sm:text-6xl text-4xl font-extrabold;
+  @apply mt-10 text-black sm:text-5xl lg:text-6xl text-[28px] font-extrabold text-center;
 }
 
 .dark .blue_gradient {
@@ -173,7 +172,7 @@
 
 
 .desc {
-  @apply mt-5 text-base text-gray-600 sm:text-[17px] sm:max-w-xl max-w-sm sm:mx-0 mx-4;
+  @apply lg:mt-5 mt-2 text-xs text-gray-600 sm:text-[17px] sm:max-w-xl max-w-[360px] sm:mx-0 mx-6 text-center;
 }
 
 @property --rotate {
@@ -183,7 +182,7 @@
 }
 
 .search_input {
-  @apply relative block sm:w-full rounded-xl bg-white dark:bg-[#050816] py-2 font-satoshi pl-8 pr-2 font-medium;
+  @apply relative block  w-full rounded-xl bg-white dark:bg-[#050816] py-2 font-satoshi pl-6 pr-2 font-medium;
 }
 
 .search_input::after,
@@ -235,7 +234,7 @@
 }
 
 .search {
-  @apply bg-transparent font-medium text-base border-none;
+  @apply bg-transparent font-medium border-none text-xs min-[410px]:text-sm lg:text-base outline-none;
 }
 
 .input_btn {
@@ -267,7 +266,7 @@
 
 /* Feed Component */
 .feed {
-  @apply mt-16 mx-auto w-1/2 max-w-xl flex justify-center items-center flex-col gap-2 mb-6 sm:w-3/4 md:w-full;
+  @apply mt-16 mx-auto flex justify-center items-center flex-col gap-2 mb-6 w-full max-w-[280px] min-[390px]:max-w-xs sm:max-w-xl;
 }
 
 /* Form Component */

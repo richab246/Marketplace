@@ -40,7 +40,7 @@ const Sidebar = ({isOpen, toggleSidebar, isAuthenticated}) => {
 
   return ( 
     <motion.div 
-      className={`fixed top-0 left-0 h-screen sm:w-80 ${isAuthenticated ? "w-40" : "w-70"} dark:bg-[#050816] bg-white shadow-lg z-50`}
+      className={`fixed top-0 left-0 min-h-screen sm:w-80 ${isAuthenticated ? "w-40" : "w-70"} dark:bg-[#050816] bg-white shadow-lg z-50`}
       animate={isOpen ? 'open' : 'close'}
       initial='close'
       variants={containerVariant}
