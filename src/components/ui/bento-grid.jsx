@@ -29,7 +29,7 @@ export const BentoGridItem = ({
       )}
       href={`models/${id}`}
     >
-       <img src={image} className="rounded-xl"/>
+       <img src={image} alt='image' className="rounded-xl"/>
        <div className="group-hover/bento:translate-x-2 transition duration-200 flex flex-col space-y-2">
         <div className="font-inter font-bold dark:text-gray-200 text-black">
           {title}

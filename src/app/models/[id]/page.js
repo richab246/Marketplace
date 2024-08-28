@@ -12,7 +12,7 @@ function Tools({params}) {
   return (
     <div className='flex flex-col justify-center w-full px-20 py-4'>
       <div className='flex gap-8 mx-20'>
-        <img src={item.image} className='rounded-md w-1/2'/>
+        <img src={item.image} alt='itemImage' className='rounded-md w-1/2'/>
         <div>
             <h1 className='text-black dark:text-gray-200 font-bold text-3xl'>{item.title}</h1>
             <p className='mt-2 mb-4 text-gray-400'>{item.description}</p>
