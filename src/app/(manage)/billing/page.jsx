@@ -8,20 +8,20 @@ function Billing() {
   const [activePlan, setActivePlan] = useState('Basic');
   
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-16">
+    <div className="w-full lg:max-w-7xl mx-auto px-10 py-16">
       <h1 className="text-3xl font-bold text-center mb-12 dark:text-gray-200">Choose Your Plan</h1>
-      <div className="grid md:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {plans.map((plan, index) => (
           <div 
             key={index} 
-            className={`bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden
+            className={`bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden 
               ${activePlan === plan.name ? 'ring-2 ring-blue-500 transform scale-105' : ''}`}
             onClick={() => setActivePlan(plan.name)}
           >
             <div className="p-6">
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">{plan.name}</h2>
+              <h2 className="sm:text-2xl text-xl font-semibold text-gray-900 dark:text-white">{plan.name}</h2>
               <p className="mt-4">
-                <span className="text-4xl font-bold text-gray-900 dark:text-white">{plan.price}</span>
+                <span className="sm:text-4xl text-2xl font-bold text-gray-900 dark:text-white">{plan.price}</span>
                 <span className="text-gray-500 dark:text-gray-400">{plan.period}</span>
               </p>
               <ul className="mt-6 space-y-4">

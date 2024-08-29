@@ -12,7 +12,7 @@ const SearchBar = () => {
 
   return (
     <section className='feed'>
-      <form className='relative w-full flex-center'>
+      <form className='relative w-full flex-center rounded-xl'>
       <div className='search_input flex-between'>
         <input 
          type='text'

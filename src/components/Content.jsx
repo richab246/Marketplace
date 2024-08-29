@@ -1,20 +1,19 @@
 "use client"
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
-import { items } from "@/constants";
 
 const ITEMS_PER_PAGE = 12;
 
-export function Content() {
+export function Content({models}) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const paginatedItems = useMemo(() => {
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    return items.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    return models.slice(startIndex, startIndex + ITEMS_PER_PAGE);
   }, [currentPage]);
 
-  const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(models.length / ITEMS_PER_PAGE);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -22,12 +21,12 @@ export function Content() {
 
   return (
     <>
-      <BentoGrid className="sm:w-full mt-16 w-3/4">
+      <BentoGrid className="xl:w-full lg:w-[88%] sm:w-[85%] md:mt-16 mt-10 w-3/4 p-4">
         {paginatedItems.map((item, i) => (
           <BentoGridItem
             key={i}
             title={item.title}
-            description={item.description}
+            description={item.subtitle}
             image={item.image}
             id={item.id}
           />

@@ -1,6 +1,5 @@
 import React from 'react'
 import { items } from '@/constants'
-import Image from 'next/image';
 
 function Tools({params}) {
    const id = parseInt(params.id); 

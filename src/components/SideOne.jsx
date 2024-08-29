@@ -8,7 +8,7 @@ function SideOne() {
   const [isActive, setIsActive] = useState('dashboard')
 
   return (
-    <aside className='flex flex-col h-screen hidden sm:block w-48 shadow-lg dark:shadow-slate-800 bg-white dark:bg-[#050816]'>
+    <aside className='flex-col h-screen hidden lg:block w-48 shadow-lg dark:shadow-slate-800 bg-white dark:bg-[#050816]'>
     <div className="flex flex-col items-start">
          <ul className="space-y-2 text-[17px] text-gray-700 font-normal w-full">
            <Link onClick={() => setIsActive('dashboard')} href="/dashboard" className={`side_card ${isActive === 'dashboard' && "bg-[#dde8ff] text-[#4c83ea] dark:bg-[#2a3754] dark:text-[#4c83ea]"}`}>

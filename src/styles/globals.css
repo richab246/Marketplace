@@ -172,7 +172,7 @@
 
 
 .desc {
-  @apply lg:mt-5 mt-2 text-xs text-gray-600 sm:text-[17px] sm:max-w-xl max-w-[360px] sm:mx-0 mx-6 text-center;
+  @apply lg:mt-5 md:mt-4 sm:mt-2 mt-1 text-[10px] sm:text-xs md:text-sm text-gray-600 lg:text-base lg:max-w-xl md:max-w-md sm:max-w-[340px] max-w-[300px] sm:mx-0 mx-6 text-center;
 }
 
 @property --rotate {
@@ -266,7 +266,7 @@
 
 /* Feed Component */
 .feed {
-  @apply mt-16 mx-auto flex justify-center items-center flex-col gap-2 mb-6 w-full max-w-[280px] min-[390px]:max-w-xs sm:max-w-xl;
+  @apply lg:mt-16 mt-10 md:mt-14 mx-auto flex justify-center items-center flex-col gap-2 mb-6 w-full max-w-[280px] min-[410px]:max-w-xs sm:max-w-xl;
 }
 
 /* Form Component */
