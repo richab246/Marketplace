@@ -1,5 +1,4 @@
 
-
 function Dashboard() {
     return (
         <div className='bg-white dark:bg-[#151030] rounded-xl mx-auto shadow-2xl w-full max-w-[300px] min-[410px]:max-w-[350px] sm:max-w-[600px] px-10 py-8 flex flex-col gap-2 border border-gray-100 dark:border-white/[0.2]'>

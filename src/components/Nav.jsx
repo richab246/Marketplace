@@ -34,8 +34,8 @@ const Nav = ({isAuthenticated, user}) => {
      <div className="sm:flex hidden">
        
         <div className="flex gap-3 md:gap-5 items-center">
-        <Link href='/discover' className="link_btn">
-              Overview
+        <Link href='/dashboard' className="link_btn">
+              Dashboard
            </Link>
            <Link href='/discover' className="link_btn">
               Features
