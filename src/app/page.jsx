@@ -1,15 +1,14 @@
-import {Content} from "@/components/Content"
+import Pagination from "@/components/Pagination";
 import SearchBar from "@/components/SearchBar"
-import prisma from '@/lib/prismadb';
+import { BentoGridItem, BentoGrid } from "@/components/ui/bento-grid";
+import { getModels } from "@/lib/models";
 
-async function getModels() {
-  const models = await prisma.model.findMany();
-  return models;
-}
+const Home = async ({searchParams}) => {
 
-const Home = async () => {
-
-  const models = await getModels()
+  const search = searchParams.search || '';
+  const page = Number(searchParams.page) || 1;
+  const { models } = await getModels({ search, page, limit: 12})
+  const totalPages = Math.ceil(models.length / 12);
 
   return (
     <section className='w-full flex-center flex-col'>
@@ -19,7 +18,18 @@ const Home = async () => {
       discover, create and share creative prompts
       </p>
       <SearchBar />
-      <Content models = {models}/>
+      <BentoGrid className="xl:w-full lg:w-[88%] sm:w-[85%] md:mt-16 mt-10 w-3/4 p-4">
+        {models?.map((item, i) => (
+          <BentoGridItem
+            key={i}
+            title={item.title}
+            description={item.subtitle}
+            image={item.image}
+            id={item.id}
+          />
+        ))}
+      </BentoGrid>
+      <Pagination totalPages={totalPages} currentPage={page}/>
     </section>
   )
 }

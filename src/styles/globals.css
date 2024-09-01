@@ -234,11 +234,11 @@
 }
 
 .search {
-  @apply bg-transparent font-medium border-none text-xs min-[410px]:text-sm lg:text-base outline-none;
+  @apply bg-transparent font-medium border-none text-xs min-[410px]:text-sm lg:text-base outline-none flex-1;
 }
 
 .input_btn {
-  @apply rounded-xl bg-[#7b0fff] sm:px-6 px-2 text-white transition-all hover:bg-white hover:text-black text-center sm:text-[16px] text-xs font-inter font-semibold flex items-center justify-center sm:py-3 py-2 gap-2;
+  @apply rounded-xl bg-[#7b0fff] sm:px-6 px-2 text-white transition-all hover:bg-white hover:border hover:border-[#7b0fff] hover:text-black text-center sm:text-[16px] text-xs font-inter font-semibold flex items-center justify-center sm:py-3 py-2 gap-2;
 }
 
 .sectionHeadText {
