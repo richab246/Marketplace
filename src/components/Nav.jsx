@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import Sidebar from "./Sidebar";
 import { motion } from "framer-motion";
 import ThemeBtn from "./ThemeBtn";
@@ -12,6 +12,45 @@ const Nav = ({isAuthenticated, user}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const [hovered, setHovered] = useState(false);
+  let sideRef = useRef();
+  let drop = useRef();
+  let toggle = useRef();
+
+  useEffect(() => {
+    const handler = (e) => {
+      if(!sideRef.current?.contains(e.target))
+      setIsOpen(false)
+    }
+    document.addEventListener('mousedown', handler)
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    }
+  }, [])
+
+  useEffect(() => {
+    const handler = (e) => {
+      if(!drop.current?.contains(e.target))
+      setHovered(false)
+    }
+    document.addEventListener('mousedown', handler)
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    }
+  }, [])
+
+  useEffect(() => {
+    const handler = (e) => {
+      if(!toggle.current?.contains(e.target))
+      setToggleDropdown(false)
+    }
+    document.addEventListener('mousedown', handler)
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    }
+  }, [])
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -28,7 +67,7 @@ const Nav = ({isAuthenticated, user}) => {
          <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
         </button>
-        <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} isAuthenticated={isAuthenticated} />
+        <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} isAuthenticated={isAuthenticated} reference={sideRef} />
       </div>
      {/* Desktop navigation  */}
      <div className="sm:flex hidden">
@@ -65,7 +104,7 @@ const Nav = ({isAuthenticated, user}) => {
                )}
 
        {hovered && (
-        <div className="absolute top-full mt-2 right-0 w-48 bg-white dark:bg-[#151030] border border-gray-300 dark:border-white/[0.2] shadow-lg rounded-lg z-10">
+        <div ref={drop} className='dropdown'>
           <ul className="py-2">
           <Link href='/dashboard' onClick={() => {setHovered(false)}} className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-[#2a3754] w-full flex dark:text-white items-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-4 dark:stroke-white">
@@ -136,7 +175,7 @@ const Nav = ({isAuthenticated, user}) => {
            </div>
      </div>
      {/* Mobile navigation  */}
-     <div className="sm:hidden flex relative">
+     <div className="sm:hidden flex relative" ref={toggle}>
       {isAuthenticated ? (
         <div className="flex">
           <div className="text-white px-3 py-1 text-[17px] font-semibold bg-[#FF69B4] rounded-full" onClick={() => setToggleDropdown(!toggleDropdown)}>{user.given_name.charAt(0)}</div>          {toggleDropdown && ( 

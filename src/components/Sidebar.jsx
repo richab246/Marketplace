@@ -26,7 +26,7 @@ const containerVariant = {
     }
 }
 
-const Sidebar = ({isOpen, toggleSidebar, isAuthenticated}) => {
+const Sidebar = ({isOpen, toggleSidebar, isAuthenticated, reference}) => {
 
   const containerControls = useAnimationControls();
   const pathname = usePathname()
@@ -46,6 +46,7 @@ const Sidebar = ({isOpen, toggleSidebar, isAuthenticated}) => {
       animate={isOpen ? 'open' : 'close'}
       initial='close'
       variants={containerVariant}
+      ref={reference}
     >
       <div className='p-4 flex flex-row w-full justify-between'>
         <div className='w-6 h-6 bg-gradient-to-br from-orange-500 to-amber-700 rounded-full'></div>
@@ -83,8 +84,10 @@ const Sidebar = ({isOpen, toggleSidebar, isAuthenticated}) => {
                    </RegisterLink>
                   </div>
                     {sidebarLists.map((item, index) => (
-                        <Link key={index} href={item.path} className={`py-2 px-4 sidebar ${pathname !=='/' ? "lg:block hidden" : "block"}`}>
-                           <button onClick={toggleSidebar}>{item.name}</button> 
+                        <Link key={index} href={item.path} className={`py-2 px-4 ${pathname !=='/' ? "lg:block hidden" : "block"}`}>
+                           <button onClick={toggleSidebar}>
+                            <span className='sidebar'>{item.name}</span>
+                            </button> 
                         </Link>
                     ))}
                     { pathname !== '/' &&
