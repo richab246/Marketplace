@@ -13,10 +13,14 @@ model Model {
   id Int @id @default(autoincrement()) 
   title String @db.Text
   subtitle String @db.Text
-  image String 
+  image String?
   description String @db.Text
+  link String @db.Text
   category Category @relation(fields: [categoryId], references: [id])
   categoryId Int
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  sponsered Boolean @default(false)
 }
 
 model User {
@@ -25,10 +29,12 @@ model User {
   email     String   @unique
   firstName String
   lastName  String
+  phoneNumber Int?
+  models Model[]
 }
 
 model Category {
   id Int @id @default(autoincrement())
-  name String
+  name String @unique
   models Model[]
 }

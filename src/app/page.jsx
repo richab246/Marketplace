@@ -4,11 +4,11 @@ import { BentoGridItem, BentoGrid } from "@/components/ui/bento-grid";
 import { getModels } from "@/lib/models";
 
 const Home = async ({searchParams}) => {
-
   const search = searchParams.search || '';
   const page = Number(searchParams.page) || 1;
-  const { models } = await getModels({ search, page, limit: 12})
-  const totalPages = Math.ceil(models.length / 12);
+  const limit = 12;
+  const { models, totalCount } = await getModels({ search, page, limit });
+  const totalPages = Math.ceil(totalCount / limit);
 
   return (
     <section className='w-full flex-center flex-col'>
@@ -26,6 +26,7 @@ const Home = async ({searchParams}) => {
             description={item.subtitle}
             image={item.image}
             id={item.id}
+            sponsored={item.sponsered}
           />
         ))}
       </BentoGrid>

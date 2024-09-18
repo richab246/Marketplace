@@ -38,7 +38,7 @@ export const BentoGridItem = ({
           {description}
         </div>
         </div>
-        <button className="bg-transparent rounded-md py-1.5 px-5 dark:text-white text-black border border-black transition-all text-center text-sm font-inter flex items-center justify-center">
+        <button className="bg-transparent rounded-md py-1.5 px-5 hover:bg-black hover:text-white dark:hover:bg-gray-800 dark:border-white/75 dark:text-white text-black border border-black transition-all text-center text-sm font-inter flex items-center justify-center">
           Try out
         </button>
     </Link>
