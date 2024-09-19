@@ -12,9 +12,9 @@ datasource db {
 
 model Model {
   id Int @id @default(autoincrement()) 
-  title String @db.Text
+  title String @db.Text @unique
   subtitle String @db.Text
-  image String?
+  image String @default("https://afw-live.s3.amazonaws.com/model/model_198/Canva_Image_Models_1.png?w=384&q=75")
   description String @db.Text
   link String @db.Text
   category Category @relation(fields: [categoryId], references: [id])

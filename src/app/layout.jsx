@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import Nav from "@/components/Nav";
 import ThemeWrapper from "@/components/ThemeWrapper";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
     title: "Marketplace",
@@ -19,6 +20,7 @@ const RootLayout = async ({children}) => {
      <ThemeWrapper>
             <Nav isAuthenticated={isUserAuthenticated} user={user}/>
             {children}
+            <Toaster   position="top-center"/>
      </ThemeWrapper>
     </html>
   )

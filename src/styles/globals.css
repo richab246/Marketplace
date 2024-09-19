@@ -301,6 +301,28 @@ body {
   @apply hover:bg-[#dde8ff] hover:text-[#4c83ea] dark:hover:bg-[#2a3754] dark:hover:text-[#4c83ea] dark:text-gray-300 px-4 py-3 w-full text-center flex gap-3 items-center 
 }
 
+.input_link {
+ @apply w-full flex p-3 font-medium text-gray-700 dark:bg-[#1b1f2a] dark:placeholder:text-white border rounded-md border-slate-400 dark:border-slate-500 placeholder:opacity-60 placeholder:font-light placeholder:text-sm
+}
+
+.input_label {
+  @apply text-sm font-medium md:text-base dark:font-normal dark:text-[#9aa6b3]
+}
+
+.spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: loader-spin 1s linear infinite;
+}
+
+@keyframes loader-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .flex-center {
   @apply flex justify-center items-center;
 }
