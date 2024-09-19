@@ -3,13 +3,18 @@ import prisma from '@/lib/prismadb';
 
 export async function POST(request) {
   try {
-    const { email, projectName, category, link, shortDescription, longDescription } = await request.json();
+    const { email, projectName, category, link, shortDescription, longDescription, sponsered } = await request.json();
 
     const user = await prisma.user.findUnique({
       where: {
         email
       }
     });
+
+    
+    if (!user) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    }
 
     const aiTool = await prisma.model.create({
       data: {
@@ -21,6 +26,7 @@ export async function POST(request) {
           },
         },
         link,
+        sponsered,
         subtitle: shortDescription,
         description: longDescription,
         user: {

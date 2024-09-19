@@ -13,7 +13,8 @@ function StepOneForm() {
     category: '',
     link: '',
     shortDescription: '',
-    longDescription: ''
+    longDescription: '',
+    sponsered: false
   })
 
   const handleInputChange = (e) => {
@@ -22,14 +23,23 @@ function StepOneForm() {
       setFormData(prevData => ({
         ...prevData,
         [name]: files[0]
-      }));
-    } else {
+      }))
+      }else {
       setFormData(prevData => ({
         ...prevData,
         [name]: value
       }));
     }
   };
+
+  const handleSponsoredChange = (e) => {
+    const isSponsored = e.target.value === 'true';
+    setFormData(prevData => ({
+      ...prevData,
+      sponsered: isSponsored
+    }));
+  };
+  
 
   const {
     register,
@@ -39,7 +49,12 @@ function StepOneForm() {
 
   const onSubmit = async () => {
     const res = await createModel(formData)
-    console.log('Data', res);
+    if (res.error) {
+      alert(`Error creating model: ${res.error}`)
+      console.error('Error creating model:', res.error);
+    } else {
+      console.log('Model created successfully:', res);
+    }
   }
 
   return (
@@ -83,33 +98,52 @@ function StepOneForm() {
                 </div>
                 <div className="w-full flex flex-col gap-2">
                  <label className='text-sm font-medium md:text-base dark:text-gray-100'>Category</label>
-                 <div className="relative">
-                   <select
-                    id="category"
-                    name='category'
-                    className="w-full p-3 border font-medium border-slate-300 rounded-md appearance-none placeholder:opacity-60 placeholder:font-normal">
-                     <option value="" disabled>Select a category</option>
-                     <option value="Machine">Category 1</option>
-                     <option value="Deep">Category 2</option>
-                    </select>
-                  <div className='absolute right-3 top-3'>
-                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 stroke-gray-400">
-                    <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-                   </svg>
-                  </div>
-                 </div>
+                 <input
+                 type='text'
+                 className='w-full flex p-3 font-medium border rounded-md border-slate-300 placeholder:opacity-60 placeholder:font-normal'
+                 placeholder='Machine learning '
+                 value={formData.category}
+                 {...register("category", { required: true, onChange: handleInputChange })}
+                 />
                 </div>
-        <div className='w-full flex flex-col gap-2'>
+               <div className='w-full flex flex-col gap-2'>
                 <label className='text-sm font-medium md:text-base dark:text-gray-100'>Link</label>
                 <input
                  type='text'
                  pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?"
                  className='w-full flex p-3 font-medium border rounded-md border-slate-300 placeholder:opacity-60 placeholder:font-normal'
-                 placeholder='www.google.com'
+                 placeholder='https://example.com'
                  value={formData.link}
                  {...register("link", { required: true, onChange: handleInputChange })}
                  />
                 {errors.link && <span className='text-xs text-red-600'>This field is required</span>}
+            </div>
+            <div className='w-full flex flex-col gap-2'>
+            <label className='text-sm font-medium md:text-base dark:text-gray-100'>Pricing Type</label>
+            <div className="flex space-x-4">
+              <label className="flex items-center space-x-2">
+              <input
+                type="radio"
+                name="sponsered"
+                value="false"
+                checked={!formData.sponsered}
+                onChange={handleSponsoredChange}
+                className="form-radio text-teal-600"
+              />
+                <span className="text-sm font-medium dark:text-gray-100">Free</span>
+              </label>
+              <label className="flex items-center space-x-2">
+              <input
+                type="radio"
+                name="sponsered"
+                value="true"
+                checked={formData.sponsered}
+                onChange={handleSponsoredChange}
+                className="form-radio text-teal-600"
+              />
+                <span className="text-sm font-medium dark:text-gray-100">Paid</span>
+              </label>
+            </div>
             </div>
             <div className='w-full flex flex-col gap-2'>
                 <label className='text-sm font-medium md:text-base dark:text-gray-100'>Short Description</label>

@@ -58,7 +58,11 @@ export const createModel = async (formData) => {
     });
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.error || 'Failed to create model');
+      if (response.status === 404) {
+        throw new Error('User not found. Please check your email or sign up.');
+      } else {
+        throw new Error(errorData.error || 'Failed to create model');
+      }
     }
     const data = await response.json();
     return data;
